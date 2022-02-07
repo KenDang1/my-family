@@ -5,7 +5,11 @@ import { useHistory } from "react-router-dom";
 function AddMemberForm () {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [newMember, setNewMember] = useState({firstName: '', lastName: '', birthday: ''})
+    const [newMember, setNewMember] = useState({
+        firstName: '', 
+        lastName: '', 
+        birthday: ''
+    });
 
     const handleChange = (evt, property) => {
         setNewMember({...newMember, [property]: evt.target.value})
