@@ -1,10 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 function AddMemberForm () {
     const dispatch = useDispatch();
     const history = useHistory();
+    
     const [newMember, setNewMember] = useState({
         firstName: '', 
         lastName: '', 
@@ -21,7 +22,7 @@ function AddMemberForm () {
             type: 'ADD_NEW_MEMBER',
             payload: newMember
         })
-        history.push('/');
+        history.push('/user');
     }
 
     return (

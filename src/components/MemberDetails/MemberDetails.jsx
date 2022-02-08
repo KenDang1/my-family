@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory, useParams }  from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import MemberHeader from './MemberHeader'
 
 
 function MemberDetails () {
@@ -21,6 +22,7 @@ function MemberDetails () {
 
     return (
         <>
+        <MemberHeader member={member} className="memberHeader" />
         </>
     )
 };  // end of MemberDetails
