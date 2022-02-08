@@ -19,11 +19,11 @@ function FamilyMemberList () {
     return (
         <>
         {myFamily.map((member) => (
-            <button key={member.id}>
+            <li key={member.id}>
                 <Member 
                     member={member}
                 />
-            </button>
+            </li>
         ))}
 
         </>
