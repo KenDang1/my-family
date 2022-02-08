@@ -4,7 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import myFamilySaga from './myFamily.Saga';
 import memberDetailsSaga from './memberDetails.saga';
-import addMemberSaga from './addNewMember'
+import addMemberSaga from './addMember.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.

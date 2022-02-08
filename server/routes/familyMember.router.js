@@ -46,7 +46,7 @@ const router = express.Router();
             "growth"."height",
             "growth"."weight"
         FROM "familyMembers"
-        JOIN "growth"
+        LEFT JOIN "growth"
             ON "growth"."familyMember_id" = "familyMembers"."id"
         WHERE "familyMembers"."id" = $1;
       `;
