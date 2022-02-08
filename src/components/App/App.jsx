@@ -19,7 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import AddMemberForm from '../AddMemberForm/AddMemberForm.jsx';
+import AddMemberForm from '../AddMemberForm/AddMemberForm';
+import MemberDetails from '../MemberDetails/MemberDetails'
 
 import './App.css';
 
@@ -116,6 +117,13 @@ function App() {
             path="/addMemberForm"
           >
             <AddMemberForm />
+          </Route>
+
+          <Route 
+            exact
+            path="/memberDetails/:id"
+          >
+            <MemberDetails />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
