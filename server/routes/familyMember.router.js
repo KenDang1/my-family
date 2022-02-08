@@ -41,8 +41,8 @@ const router = express.Router();
             "familyMembers"."firstName",
             "familyMembers"."lastName",
             "familyMembers"."birthday",
+            TO_CHAR("date", 'MM-DD-YY'),
             "growth"."age",
-            "growth"."date",
             "growth"."height",
             "growth"."weight"
         FROM "familyMembers"
@@ -56,6 +56,8 @@ const router = express.Router();
       pool.query(queryText, queryParams)
         .then((result) => {
             res.send(result.rows);
+            console.log('results', result.rows);
+            
         })
         .catch((err) => {
             console.log('error GET memberInfo', err);
