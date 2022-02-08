@@ -12,11 +12,11 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
+      {/* <p>Your ID is: {user.id}</p> */}
       {/** family member should render here */}
       <FamilyMemberList className="familyList"/>
       <AddFamilyBtn className="addMember"/>
-      <LogOutButton className="btn" />
+      {/* <LogOutButton className="btn" /> */}
     </div>
   );
 }

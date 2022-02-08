@@ -15,14 +15,14 @@ const router = express.Router();
  */
  router.get('/:id', (req, res) => {
     // GET route code here
-    console.log('id is', req.params.id);
+    console.log('User id', req.user.id);
     
     let queryText = `
         SELECT * FROM "familyMembers"
         WHERE "user_id" = $1;
     `;
 
-    let queryParams = [req.params.id]
+    let queryParams = [req.user.id]
 
     pool.query(queryText, queryParams)
         .then((result) => {
@@ -67,6 +67,32 @@ const router = express.Router();
    */
   router.post('/', (req, res) => {
     // POST route code here
+    console.log('new member', req.body);
+    
+    let newMember = req.body;
+
+    const queryText = `
+    INSERT INTO "familyMembers"
+      ("firstName", "lastName", "birthday", "user_id")
+    VALUES ($1, $2, $3, $4);
+  `;
+
+  const queryParams = [
+      newMember.firstName,
+      newMember.lastName,
+      newMember.birthday,
+      req.user.id
+  ]
+
+  pool.query(queryText, queryParams)
+    .then((results) => {
+      res.sendStatus(201)
+    })
+    .catch( err => {
+      console.error(`POST member failed`, err);
+      res.sendStatus(500);
+    });
+    
   });
   
   module.exports = router;
