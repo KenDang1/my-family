@@ -9,7 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import AppointmentBtn from './AppointmentBtn';
 
 
 function createData(age, height, weight, date) {
@@ -34,6 +34,16 @@ function MemberDetails () {
 
     return (
         <>
+        <div>
+            <AppointmentBtn 
+                className="appointmentBtn" 
+                id={id}
+            />
+        </div>
+        <br />
+        <div>
+            <button>Document</button>
+        </div>
         <MemberHeader member={member} className="memberHeader" />
         <br />
         <TableContainer component={Paper}>
