@@ -10,23 +10,24 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import AppointmentBtn from './AppointmentBtn';
+import Delete from './DeleteBtn';
 
 
-function createData(age, height, weight, date) {
-    return { age, height, weight, date };
+function createData(name, location, date, comments) {
+    return { name, location, date, comments };
   }
 
-function MemberDetails () {
+function MemberAppointment () {
     const { id } = useParams();
-    console.log('member id', id);
     const dispatch = useDispatch();
-
     const member = useSelector ((store) => store.memberInfo);
-    console.log('member info', member);
+    const appointment = useSelector ((store) => store.memberAppointment);
+    
+    console.log('appointment', appointment);
 
     useEffect (() => {
         dispatch({
-            type: 'FETCH_MEMBER_INFO',
+            type: 'FETCH_MEMBER_APPOINTMENT',
             payload: id
         })
     }, []);
@@ -47,25 +48,28 @@ function MemberDetails () {
         <MemberHeader member={member} className="memberHeader" />
         <br />
         <TableContainer component={Paper}>
+            <h3>Appointment</h3>
         <Table sx={{ minWidth: 100, border: 2, borderColor: 'black' }}  aria-label="simple table">
             <TableHead>
             <TableRow>
-                <TableCell align="center">Age&nbsp;(month)</TableCell>
-                <TableCell align="center">Height&nbsp;(in)</TableCell>
-                <TableCell align="center">Weight&nbsp;(lbs)</TableCell>
+                <TableCell align="center">Name</TableCell>
+                <TableCell align="center">Where</TableCell>
                 <TableCell align="center">Date</TableCell>
+                <TableCell align="center">Comments</TableCell>
             </TableRow>
             </TableHead>
             <TableBody>
-            {member.map((memberInfo, index) => (
+            {appointment.map((appointment, index) => (
                 <TableRow
                 key={index}
                 sx={ { border: 2, minWidth: 100 } }
                 >
-                <TableCell align="center">{memberInfo.age}</TableCell>
-                <TableCell align="center">{memberInfo.height}</TableCell>
-                <TableCell align="center">{memberInfo.weight}</TableCell>
-                <TableCell align="center">{memberInfo.to_char}</TableCell>
+                <TableCell align="center">{appointment.name}</TableCell>
+                <TableCell align="center">{appointment.location}</TableCell>
+                <TableCell align="center">{appointment.date}</TableCell>
+                <TableCell align="center">{appointment.comments}</TableCell>
+                <TableCell align="center"><button>Edit</button></TableCell>
+                <TableCell align="center"><button>Delete</button></TableCell>
                 </TableRow>
             ))}
             </TableBody>
@@ -75,4 +79,4 @@ function MemberDetails () {
     )
 };  // end of MemberDetails
 
-export default MemberDetails;
+export default MemberAppointment;

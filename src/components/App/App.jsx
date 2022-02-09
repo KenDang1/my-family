@@ -20,9 +20,11 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddMemberForm from '../AddMemberForm/AddMemberForm';
-import MemberDetails from '../MemberDetails/MemberDetails';
-import AddAppointmentForm from '../AddAppointmentForm/AddAppointmentForm'
-import MUIForm from '../AddAppointmentForm/muiAppt'
+import MemberDetails from '../MemberInfo/MemberDetails';
+import Appointment from '../MemberInfo/MemberAppointment';
+import AddAppointmentForm from '../AddAppointmentForm/AddAppointmentForm';
+
+
 
 import './App.css';
 
@@ -123,16 +125,16 @@ function App() {
 
           <Route 
             exact
-            path="/AddAppointmentForm/:id"
+            path="/addAppointmentForm/:id"
           >
             <AddAppointmentForm />
           </Route>
 
-          <Route 
+          <Route
             exact
-            path="/MUIForm/:id"
+            path="/appointment/:id"
           >
-            <MUIForm />
+            <Appointment />
           </Route>
 
           <Route 
