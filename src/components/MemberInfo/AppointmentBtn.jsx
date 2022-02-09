@@ -11,9 +11,9 @@ function AppointmentBtn (props) {
         <button
             // When click on this button it should take user to AddMemberForm
             className={props.className}
-            onClick={() => history.push(`/MUIForm/${props.id}`)}
+            onClick={() => history.push(`/addAppointmentForm/${props.id}`)}
         >
-            Appointment
+            Add Appointment
         </button>
         </>
     )

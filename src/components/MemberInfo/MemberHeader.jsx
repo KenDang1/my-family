@@ -1,5 +1,4 @@
 function MemberHeader ({member}) {
-    console.log("member in header", member);
         return (
             <>
             { member[0] ? (
