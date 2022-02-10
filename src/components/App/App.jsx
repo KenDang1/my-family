@@ -23,6 +23,7 @@ import AddMemberForm from '../AddMemberForm/AddMemberForm';
 import MemberDetails from '../MemberInfo/MemberDetails';
 import Appointment from '../MemberInfo/MemberAppointment';
 import AddAppointmentForm from '../AddAppointmentForm/AddAppointmentForm';
+import EditAppointmentForm from '../MemberInfo/EditAppointmentForm';
 
 
 
@@ -135,6 +136,13 @@ function App() {
             path="/appointment/:id"
           >
             <Appointment />
+          </Route>
+
+          <Route 
+            exact 
+            path="/appointment/:idM/edit/:idA"
+          >
+            <EditAppointmentForm />
           </Route>
 
           <Route 

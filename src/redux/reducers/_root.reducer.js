@@ -4,6 +4,7 @@ import user from './user.reducer';
 import myFamilyReducer from './myFamily.reducer';
 import memberInfo from './memberInfo.reducer';
 import memberAppointment from './memberAppointment.reducer';
+import selectedMember from './selectedMember.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   myFamilyReducer, // will have all the family members
   memberInfo,  // get everything related to this id
-  memberAppointment,
+  memberAppointment, // all member appointments
+  selectedMember, // single appointment or growth 
 });
 console.log('my family in root reducer', myFamilyReducer);
 
