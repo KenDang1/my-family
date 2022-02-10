@@ -6,7 +6,23 @@ function* memberInfoSaga () {
     yield takeEvery('ADD_NEW_MEMBER', addNewMember);
     yield takeEvery('ADD_NEW_APPOINTMENT', addNewAppointment);
     yield takeEvery('FETCH_MEMBER_APPOINTMENT', fetchMemberAppointment);
+    yield takeEvery('DELETE_APPOINTMENT', deleteAppointment);
 };
+
+function* deleteAppointment (action) {
+    try {
+        console.log('In deleteAppointment saga', action.payload);
+        yield axios.delete(`/api/family/${action.payload.appointmentId}`);
+
+        yield put({
+            type: 'FETCH_MEMBER_APPOINTMENT',
+            payload: action.payload.memberId
+        });
+    }
+    catch (err) {
+        console.error('DELETE Appointment failed', err);
+    }
+}
 
 function* fetchMemberDetails (action) {
     try{
@@ -38,6 +54,8 @@ function* addNewMember (action) {
 }; //end of addNewMember
 
 function* fetchMemberAppointment (action) {
+    console.log('action', action.payload);
+    
     try{
         const response = yield axios.get(`/api/family/appointment/${action.payload}`)
 
@@ -54,10 +72,11 @@ function* fetchMemberAppointment (action) {
 function* addNewAppointment (action) {
     console.log('in addNewAppointment', action.payload);
     try{
-        yield axios.post(`/api/family/appointment`, action.payload);
+        yield axios.post(`/api/family/appointment/${action.payload.memberId}`, action.payload);
 
         yield put({
-            type: 'FETCH_MEMBER_APPOINTMENT'
+            type: 'FETCH_MEMBER_APPOINTMENT',
+            payload: action.payload.memberId
         });
     }
     catch {

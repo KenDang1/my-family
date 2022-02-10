@@ -10,15 +10,14 @@ import { useHistory, useParams } from "react-router-dom";
 function AddAppointmentForm () {
     const dispatch = useDispatch();
     const history = useHistory();
-    const id = useParams();
-    console.log('appt member id', id);
+    const memberId = useParams();
+    console.log('appt member id', memberId.id);
     
     const [newAppointment, setNewAppointment] = useState({
         name: '', 
         location: '', 
         date_time: '',
-        comments: '',
-        familyMember_id: id.id
+        comments: ''
     });
 
     const handleChange = (evt, property) => {
@@ -29,9 +28,12 @@ function AddAppointmentForm () {
         evt.preventDefault();
         dispatch({
             type: 'ADD_NEW_APPOINTMENT',
-            payload: newAppointment
+            payload: {
+                newAppointment: newAppointment,
+                memberId: memberId.id
+            }
         })
-        history.push(`/appointment/${id.id}`);
+        history.push(`/appointment/${memberId.id}`);
     };
 
     const useStyles = makeStyles(theme => ({

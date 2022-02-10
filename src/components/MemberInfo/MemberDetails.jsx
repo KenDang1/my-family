@@ -17,7 +17,7 @@ function createData(age, height, weight, date) {
   }
 
 function MemberDetails () {
-    const { id } = useParams();
+    const params = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -27,16 +27,16 @@ function MemberDetails () {
     useEffect (() => {
         dispatch({
             type: 'FETCH_MEMBER_INFO',
-            payload: id
+            payload: params.id
         })
-    }, []);
+    }, [params.id]);
 
 
     return (
         <>
         <div>
            {/** Appointment */}
-            <button onClick={() => history.push(`/appointment/${id}`)} >
+            <button onClick={() => history.push(`/appointment/${params.id}`)} >
                 Appointment
             </button>
         </div>
