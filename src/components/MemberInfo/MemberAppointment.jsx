@@ -18,7 +18,8 @@ function createData(name, location, date, comments) {
   }
 
 function MemberAppointment () {
-    const { id } = useParams();
+    const params = useParams();
+    console.log('memberId in memberAppointment', params.id);
     const dispatch = useDispatch();
     const member = useSelector ((store) => store.memberInfo);
     const appointment = useSelector ((store) => store.memberAppointment);
@@ -28,9 +29,9 @@ function MemberAppointment () {
     useEffect (() => {
         dispatch({
             type: 'FETCH_MEMBER_APPOINTMENT',
-            payload: id
+            payload: params.id
         })
-    }, []);
+    }, [params.id]);
 
 
     return (
@@ -38,7 +39,7 @@ function MemberAppointment () {
         <div>
             <AppointmentBtn 
                 className="appointmentBtn" 
-                id={id}
+                id={params.id}
             />
         </div>
         <br />
@@ -69,7 +70,12 @@ function MemberAppointment () {
                 <TableCell align="center">{appointment.date}</TableCell>
                 <TableCell align="center">{appointment.comments}</TableCell>
                 <TableCell align="center"><button>Edit</button></TableCell>
-                <TableCell align="center"><button>Delete</button></TableCell>
+                <TableCell align="center">
+                    <Delete 
+                        appointmentId={appointment.id}
+                        id={params.id}
+                        />
+                </TableCell>
                 </TableRow>
             ))}
             </TableBody>

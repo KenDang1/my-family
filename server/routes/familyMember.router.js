@@ -44,7 +44,8 @@ const router = express.Router();
           TO_CHAR("date", 'MON DD, YYYY') AS "date",
           "growth"."age",
           "growth"."height",
-          "growth"."weight"
+          "growth"."weight",
+          "growth"."id"
       FROM "familyMembers"
       LEFT JOIN "growth"
           ON "growth"."familyMember_id" = "familyMembers"."id"
@@ -97,11 +98,12 @@ const router = express.Router();
     
   });
 
-  router.post('/appointment', (req, res) => {
+  router.post('/appointment/:memberId', (req, res) => {
     // POST route code here
-    // let memberId = req.body.id.id;
-    // console.log('member id', memberId)
-    let newAppointment = req.body;
+    console.log('post member id', req.params.memberId)
+    let memberId = req.params.memberId;
+
+    let newAppointment = req.body.newAppointment;
     console.log('newAppointment', newAppointment)
 
     const queryText = `
@@ -115,7 +117,7 @@ const router = express.Router();
         newAppointment.location,
         newAppointment.date_time,
         newAppointment.comments,
-        newAppointment.familyMember_id
+        memberId
     ]
 
     pool.query(queryText, queryParams)
@@ -140,7 +142,8 @@ const router = express.Router();
           TO_CHAR("date_time", 'MON DD, YYYY') AS "date",
           "appointment"."name",
           "appointment"."location",
-          "appointment"."comments"
+          "appointment"."comments",
+          "appointment"."id"
       FROM "familyMembers"
       LEFT JOIN "appointment"
           ON "appointment"."familyMember_id" = "familyMembers"."id"
@@ -156,9 +159,33 @@ const router = express.Router();
             
         })
         .catch((err) => {
-            console.log('error GET memberInfo', err);
+            console.log('error GET memberAppointment', err);
         });
 
   }); // end of GET /appointment 
   
+  router.delete('/:appointmentId', (req, res) => {
+    console.log('appointmentId', req.params.appointmentId);
+    let appointmentId = req.params.appointmentId;
+
+    const queryText = `
+      DELETE FROM "appointment"
+      WHERE "id" = $1;
+    `;
+
+    let queryParams = [
+      appointmentId
+    ]
+
+    pool.query(queryText, queryParams)
+      .then(() => {
+        res.send(204)
+      })
+      .catch((err) => {
+        console.error('DELETE Appointment FAILED', err);
+        res.sendStatus(500);
+      });
+  });
+
+
   module.exports = router;
