@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams }  from 'react-router-dom';
+import { useHistory, useParams, Link }  from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import MemberHeader from './MemberHeader';
 import Table from '@mui/material/Table';
@@ -10,8 +10,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import AppointmentBtn from './AppointmentBtn';
-import Delete from './DeleteBtn';
-
+import Delete from './DeleteAppointmentBtn';
+import Edit from './EditAppointmentBtn';
 
 function createData(name, location, date, comments) {
     return { name, location, date, comments };
@@ -23,8 +23,6 @@ function MemberAppointment () {
     const dispatch = useDispatch();
     const member = useSelector ((store) => store.memberInfo);
     const appointment = useSelector ((store) => store.memberAppointment);
-    
-    console.log('appointment', appointment);
 
     useEffect (() => {
         dispatch({
@@ -69,7 +67,9 @@ function MemberAppointment () {
                 <TableCell align="center">{appointment.location}</TableCell>
                 <TableCell align="center">{appointment.date}</TableCell>
                 <TableCell align="center">{appointment.comments}</TableCell>
-                <TableCell align="center"><button>Edit</button></TableCell>
+                <TableCell align="center">
+                    <Edit memberId={params.id} appointmentId={appointment.id}/>
+                </TableCell>
                 <TableCell align="center">
                     <Delete 
                         appointmentId={appointment.id}

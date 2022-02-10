@@ -3,7 +3,6 @@ import { useHistory, useParams } from "react-router-dom";
 
 
 function DeleteBtn ({appointmentId, id}) {
-    console.log('apptId', appointmentId);
     const dispatch = useDispatch();
     const history = useHistory();
 
