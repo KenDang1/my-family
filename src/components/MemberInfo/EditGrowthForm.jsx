@@ -10,7 +10,7 @@ function EditGrowthForm () {
     console.log('growthId in editForm', idM, idG);
     // Grab the "selected member appointment" from the redux store
     const selectedMember = useSelector(store => store.selectedMember);
-    
+    console.log('selcted member for update growth', selectedMember);
     useEffect(() => {
         dispatch({
             type: 'FETCH_SELECTED_MEMBER_GROWTH',
@@ -42,47 +42,48 @@ function EditGrowthForm () {
     return (
     <>
         <h2>Edit Growth</h2>
-        {/* <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <input
-                type="text"
+                type="integer"
                 // The big change: 
                 // bind inputs to redux (instead of local state)
-                value={selectedMember.appointmentName}
+                value={selectedMember.age}
                 onChange={(evt) => dispatch({
                 type: 'UPDATE_MEMBER',
-                payload: { appointmentName: evt.target.value }
+                payload: { age: evt.target.value }
                 })}
             />
             <input
-                type="text"
-                value={selectedMember.location}
+                type="integer"
+                value={selectedMember.height}
                 onChange={(evt) => dispatch({
                 type: 'UPDATE_MEMBER',
-                payload: { location: evt.target.value }
+                payload: { height: evt.target.value }
+                })}
+            />
+            <input
+                type="integer"
+                value={selectedMember.weight}
+                onChange={(evt) => dispatch({
+                type: 'UPDATE_MEMBER',
+                payload: { weight: evt.target.value }
                 })}
             />
             <input
                 type="date"
                 date-format="MON DD, YYYY"
-                value={selectedMember.appointmentDate}
+                value={selectedMember.date}
                 onChange={(evt) => dispatch({
                 type: 'UPDATE_MEMBER',
-                payload: { appointmentDate: evt.target.value }
+                payload: { date: evt.target.value }
                 })}
             />
-            <input
-                type="text"
-                value={selectedMember.comments}
-                onChange={(evt) => dispatch({
-                type: 'UPDATE_MEMBER',
-                payload: { comments: evt.target.value }
-                })}
-            />
+      
             <input
                 type='submit'
-                value='Update Appointment'
+                value='Update GrowthInfo'
             />
-        </form> */}
+        </form>
     </>
     );
 }

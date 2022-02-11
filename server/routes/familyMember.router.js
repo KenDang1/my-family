@@ -46,7 +46,8 @@ router.get('/member/:id', (req, res) => {
     FROM "familyMembers"
     LEFT JOIN "growth"
         ON "growth"."familyMember_id" = "familyMembers"."id"
-    WHERE "familyMembers"."id" = $1;
+    WHERE "familyMembers"."id" = $1
+    ORDER BY "date";
     `;
 
     let queryParams = [req.params.id]
@@ -147,7 +148,8 @@ router.get('/appointment/:id', (req, res) => {
     FROM "familyMembers"
     LEFT JOIN "appointment"
         ON "appointment"."familyMember_id" = "familyMembers"."id"
-    WHERE "appointment"."familyMember_id" = $1;
+    WHERE "appointment"."familyMember_id" = $1
+    ORDER BY "date";
     `;
 
   let queryParams = [req.params.id]
@@ -214,7 +216,7 @@ router.delete('/growthData/:growthId', (req, res) => {
 
 
 // GET only that one SELECTED appointment
-router.get('/select/:memberId/:appointmentId', (req, res) => {
+router.get('/selectAppointment/:memberId/:appointmentId', (req, res) => {
   console.log('select memberId', req.params.memberId);
   console.log('appId', req.params.appointmentId);
   
@@ -250,12 +252,51 @@ router.get('/select/:memberId/:appointmentId', (req, res) => {
     });
 }); // end of GET select member
 
+
+// GET only that one SELECTED growth
+router.get('/selectGrowth/:memberId/:growthId', (req, res) => {
+  console.log('select memberId', req.params.memberId);
+  console.log('growthId', req.params.growthId);
+  
+  const queryText= `
+    SELECT DISTINCT
+      "familyMembers"."id" AS "memberId",
+      "familyMembers"."firstName",
+      "familyMembers"."lastName",
+      "familyMembers"."birthday",
+      TO_CHAR("date", 'yyyy-MM-dd') AS "date",
+      "growth"."age",
+      "growth"."height",
+      "growth"."weight",
+      "growth"."id" AS "growthId"
+    FROM "familyMembers"
+    LEFT JOIN "growth"
+      ON "growth"."familyMember_id" = "familyMembers"."id"
+    WHERE "growth"."id" = $1;
+  `;
+
+  let queryParams = [
+    req.params.growthId
+  ];
+
+  pool.query(queryText, queryParams)
+    .then((result) => {
+      console.log('result', result.rows[0]);
+      res.send(result.rows[0])
+    })
+    .catch((err) => {
+      console.error('GET by memberId and growthId failed', err);
+      res.sendStatus(500);
+    });
+}); // end of GET select member growth
+
+
+
 // THIS IS FOR EDITING APPOINTMENT
-router.put('/:memberId', (req, res) => {
-  console.log('memberId in PUT', req.params.memberId);
-  console.log('update body', req.body);
+router.put('/appointment/:memberId', (req, res) => {
+ 
   let updateAppointment = req.body;
-  // = TO_DATE($3, 'yyyy-MM-dd')
+  
   const queryText = `
     UPDATE "appointment" 
     SET ("name", "location", "date_time", "comments") =
@@ -280,6 +321,40 @@ router.put('/:memberId', (req, res) => {
           console.log(`Error making database query`, error);
           res.sendStatus(500);
       });
-});
+}); // end of PUT appointment
 
-  module.exports = router;
+
+// THIS IS FOR EDITING GROWTH
+router.put('/growth/:memberId', (req, res) => {
+  console.log('memberId in PUT growth', req.params.memberId);
+  console.log('update growth body', req.body);
+  let updateGrowth = req.body;
+  const age = Number(updateGrowth.age)
+  const queryText = `
+    UPDATE "growth" 
+    SET ("age", "height", "weight", "date") =
+        ($1, $2, $3, $4)
+    WHERE "id" = $5 AND "familyMember_id" = $6;
+  `;
+  
+  const queryParams = [
+    age,
+    updateGrowth.height,
+    updateGrowth.weight,
+    updateGrowth.date,
+    updateGrowth.growthId,
+    req.params.memberId
+  ]
+
+  pool.query(queryText, queryParams)
+      .then((result) => {
+          res.sendStatus(200);
+      })
+      .catch((error) => {
+          console.log(`Error making database query`, error);
+          res.sendStatus(500);
+      });
+}); // end of PUT growth
+
+
+module.exports = router;
