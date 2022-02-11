@@ -1,6 +1,6 @@
 import { Link }  from 'react-router-dom';
 
-function EditAppointmentBtn ({ type, memberId, appointmentId, growthId }) {
+function EditBtn ({ type, memberId, appointmentId, growthId }) {
     console.log('member and appoint id', memberId, appointmentId);
     return (
         <>
@@ -16,4 +16,4 @@ function EditAppointmentBtn ({ type, memberId, appointmentId, growthId }) {
     )
 }; // end of EditAppointmentBtn
 
-export default EditAppointmentBtn;
+export default EditBtn;
