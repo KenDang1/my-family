@@ -14,12 +14,9 @@ import Delete from './DeleteBtn';
 import Edit from './EditBtn';
 
 
-
-function createData(name, location, date, comments) {
-    return { name, location, date, comments };
-    }
-
 function MemberAppointment () {
+
+    const history = useHistory();
     const params = useParams();
     console.log('memberId in memberAppointment', params.id);
     const dispatch = useDispatch();
@@ -46,6 +43,14 @@ function MemberAppointment () {
         <div>
             <button>Document</button>
         </div>
+        <br />
+        <div className='backBtn'>
+            <button 
+                onClick={() => history.push(`/memberDetails/${params.id}`)}>
+                Back
+            </button>
+        </div>
+        <br />
         <MemberHeader member={member} className="memberHeader" />
         <br />
         <TableContainer component={Paper}>
