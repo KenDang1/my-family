@@ -10,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Delete from './DeleteBtn';
-import Edit from './EditAppointmentBtn';
+import Edit from './EditBtn';
 
 function createData(age, height, weight, date) {
     return { age, height, weight, date };
@@ -67,9 +67,8 @@ function MemberDetails () {
                 <TableCell align="center">{memberInfo.date}</TableCell>
                 <TableCell align="center">
                     <Edit
-                        type="editGrowth"
                         memberId={params.id} 
-                        growthId={memberInfo.id}
+                        growthId={memberInfo.growthId}
                     />
                 </TableCell>
                 <TableCell align="center">

@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import AppointmentBtn from './AddAppointmentBtn';
 import Delete from './DeleteBtn';
-import Edit from './EditAppointmentBtn';
+import Edit from './EditBtn';
 
 
 
