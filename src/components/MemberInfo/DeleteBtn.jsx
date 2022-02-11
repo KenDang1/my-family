@@ -30,13 +30,5 @@ function DeleteBtn ({type, appointmentId, memberId, payload, growthId}) {
         </>
     )
 }; // end of Delete
+
 export default DeleteBtn;
-
-
-// onClick={() => dispatch({
-//     type,
-//     payload: {
-//         appointmentId: appointmentId, 
-//         memberId: memberId
-//     }
-// })}

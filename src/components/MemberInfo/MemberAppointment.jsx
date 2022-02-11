@@ -25,7 +25,6 @@ function MemberAppointment () {
     const dispatch = useDispatch();
     const member = useSelector ((store) => store.memberInfo);
     const appointment = useSelector ((store) => store.memberAppointment);
-    const payload = {}
     
     useEffect (() => {
         dispatch({
