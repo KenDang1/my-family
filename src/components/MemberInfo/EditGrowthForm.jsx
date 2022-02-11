@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Cancel from './CancelBtn'
 
 function EditGrowthForm () {
     const dispatch = useDispatch();
@@ -78,12 +79,15 @@ function EditGrowthForm () {
                 payload: { date: evt.target.value }
                 })}
             />
-      
             <input
                 type='submit'
                 value='Update GrowthInfo'
             />
         </form>
+        <Cancel 
+            type="toDetails"
+            memberId={idM}
+        />
     </>
     );
 }

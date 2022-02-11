@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Cancel from './CancelBtn';
 
 function EditAppointmentForm () {
     const dispatch = useDispatch();
@@ -83,6 +84,10 @@ function EditAppointmentForm () {
                 value='Update Appointment'
             />
         </form>
+        <Cancel 
+            type="toAppointment"
+            memberId={idM}
+        />
     </>
     );
 }
