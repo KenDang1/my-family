@@ -7,12 +7,28 @@ function* memberInfoSaga () {
     yield takeEvery('ADD_NEW_APPOINTMENT', addNewAppointment);
     yield takeEvery('FETCH_MEMBER_APPOINTMENT', fetchMemberAppointment);
     yield takeEvery('DELETE_APPOINTMENT', deleteAppointment);
+    yield takeEvery('DELETE_GROWTH_DATA', deleteGrowthData);
 };
+
+function* deleteGrowthData (action) {
+    console.log('In deleteGrowthData saga', action.payload);
+    try {
+        yield axios.delete(`/api/family/growthData/${action.payload.growthId}`);
+
+        yield put({
+            type: 'FETCH_MEMBER_INFO',
+            payload: action.payload.memberId
+        });
+    }
+    catch (err) {
+        console.error('DELETE growthData failed', err);
+    }
+}; // end of deleteGrowthData
 
 function* deleteAppointment (action) {
     try {
         console.log('In deleteAppointment saga', action.payload);
-        yield axios.delete(`/api/family/${action.payload.appointmentId}`);
+        yield axios.delete(`/api/family/appointment/${action.payload.appointmentId}`);
 
         yield put({
             type: 'FETCH_MEMBER_APPOINTMENT',
@@ -22,7 +38,7 @@ function* deleteAppointment (action) {
     catch (err) {
         console.error('DELETE Appointment failed', err);
     }
-}
+}; // end of deleteAppointment
 
 function* fetchMemberDetails (action) {
     try{
@@ -39,7 +55,6 @@ function* fetchMemberDetails (action) {
 }; // end of fetchMemberDetails
 
 function* addNewMember (action) {
-    console.log('in addNewMember', action);
     try{
         yield axios.post('/api/family', action.payload);
 

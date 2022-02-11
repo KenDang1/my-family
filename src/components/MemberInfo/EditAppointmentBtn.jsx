@@ -1,10 +1,15 @@
 import { Link }  from 'react-router-dom';
 
-function EditAppointmentBtn ({ memberId, appointmentId }) {
+function EditAppointmentBtn ({ type, memberId, appointmentId, growthId }) {
     console.log('member and appoint id', memberId, appointmentId);
     return (
         <>
-        <Link to={`/appointment/${memberId}/edit/${appointmentId}`}>
+        <Link 
+            to= { type === "editAppointment" ? 
+                `/appointment/${memberId}/edit/${appointmentId}` 
+            : 
+                `/growth/${memberId}/edit/${growthId}` 
+        }>
             Edit
         </Link>
         </>

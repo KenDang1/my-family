@@ -5,6 +5,8 @@ import axios from 'axios';
 function* selectedMember () {
     yield takeEvery('FETCH_SELECTED_MEMBER_APPOINTMENT', fetchSelectedMember);
     yield takeEvery('SAVE_MEMBER_APPOINTMENT', saveMemberAppointment);
+    // yield takeEvery('FETCH_SELECTED_MEMBER_GROWTH', fetchSlectedMember);
+    // yield takeEvery('SAVE_MEMBER_GROWTH', saveMemberGrowth);
 };
 
 

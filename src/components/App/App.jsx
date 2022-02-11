@@ -24,7 +24,7 @@ import MemberDetails from '../MemberInfo/MemberDetails';
 import Appointment from '../MemberInfo/MemberAppointment';
 import AddAppointmentForm from '../AddAppointmentForm/AddAppointmentForm';
 import EditAppointmentForm from '../MemberInfo/EditAppointmentForm';
-
+import EditGrowthForm from '../MemberInfo/EditGrowthForm';
 
 
 import './App.css';
@@ -143,6 +143,13 @@ function App() {
             path="/appointment/:idM/edit/:idA"
           >
             <EditAppointmentForm />
+          </Route>
+
+          <Route 
+            exact 
+            path="/growth/:idM/edit/:idG"
+          >
+            <EditGrowthForm />
           </Route>
 
           <Route 

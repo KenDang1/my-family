@@ -1,6 +1,5 @@
 import { useHistory } from "react-router-dom";
 
-
 function AddFamilyBtn (props) {
     const history = useHistory();
 

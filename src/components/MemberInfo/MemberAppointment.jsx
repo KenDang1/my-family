@@ -9,13 +9,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import AppointmentBtn from './AppointmentBtn';
-import Delete from './DeleteAppointmentBtn';
+import AppointmentBtn from './AddAppointmentBtn';
+import Delete from './DeleteBtn';
 import Edit from './EditAppointmentBtn';
+
+
 
 function createData(name, location, date, comments) {
     return { name, location, date, comments };
-  }
+    }
 
 function MemberAppointment () {
     const params = useParams();
@@ -23,7 +25,8 @@ function MemberAppointment () {
     const dispatch = useDispatch();
     const member = useSelector ((store) => store.memberInfo);
     const appointment = useSelector ((store) => store.memberAppointment);
-
+    const payload = {}
+    
     useEffect (() => {
         dispatch({
             type: 'FETCH_MEMBER_APPOINTMENT',
@@ -68,12 +71,17 @@ function MemberAppointment () {
                 <TableCell align="center">{appointment.date}</TableCell>
                 <TableCell align="center">{appointment.comments}</TableCell>
                 <TableCell align="center">
-                    <Edit memberId={params.id} appointmentId={appointment.id}/>
+                    <Edit 
+                        type="editAppointment"
+                        memberId={params.id} 
+                        appointmentId={appointment.id}
+                    />
                 </TableCell>
                 <TableCell align="center">
                     <Delete 
+                        type="DELETE_APPOINTMENT"
                         appointmentId={appointment.id}
-                        id={params.id}
+                        memberId={params.id}
                         />
                 </TableCell>
                 </TableRow>

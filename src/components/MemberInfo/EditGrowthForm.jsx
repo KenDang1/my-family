@@ -3,20 +3,20 @@ import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-function EditAppointmentForm () {
+function EditGrowthForm () {
     const dispatch = useDispatch();
     const history = useHistory();
-    const {idM, idA} = useParams();   // { id: 2 }
-    console.log('Ids in editForm', idM, idA);
+    const {idM, idG} = useParams();   // { id: 2 }
+    console.log('growthId in editForm', idM, idG);
     // Grab the "selected member appointment" from the redux store
     const selectedMember = useSelector(store => store.selectedMember);
-
+    
     useEffect(() => {
         dispatch({
-            type: 'FETCH_SELECTED_MEMBER_APPOINTMENT',
+            type: 'FETCH_SELECTED_MEMBER_GROWTH',
             payload: {
                 memberId: idM,
-                appointmentId: idA
+                growthId: idG
             }
         });
     }, [idM]); // 👈 fetch the member again, if the url changes
@@ -28,21 +28,21 @@ function EditAppointmentForm () {
     // Save the updated `activeStudent`
     // to the db (via sagas, axios)
         dispatch({
-        type: 'SAVE_MEMBER_APPOINTMENT',
+        type: 'SAVE_MEMBER_GROWTH',
         payload: selectedMember
         });
 
     // go back home
     // The saveStudent saga will call FETCH_STUDENTS
     // so the list view will be up to date
-        history.push(`/appointment/${idM}`);
+        history.push(`/memberDetails/${idM}`);
     };
 
 
     return (
     <>
-        <h2>Edit Appointment</h2>
-        <form onSubmit={handleSubmit}>
+        <h2>Edit Growth</h2>
+        {/* <form onSubmit={handleSubmit}>
             <input
                 type="text"
                 // The big change: 
@@ -82,9 +82,9 @@ function EditAppointmentForm () {
                 type='submit'
                 value='Update Appointment'
             />
-        </form>
+        </form> */}
     </>
     );
 }
 
-export default EditAppointmentForm;
+export default EditGrowthForm;

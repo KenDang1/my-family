@@ -42,7 +42,7 @@ router.get('/member/:id', (req, res) => {
         "growth"."age",
         "growth"."height",
         "growth"."weight",
-        "growth"."id"
+        "growth"."id" AS "growthId"
     FROM "familyMembers"
     LEFT JOIN "growth"
         ON "growth"."familyMember_id" = "familyMembers"."id"
@@ -165,7 +165,7 @@ router.get('/appointment/:id', (req, res) => {
 }); // end of GET /appointment 
 
 // Delete the appointment
-router.delete('/:appointmentId', (req, res) => {
+router.delete('/appointment/:appointmentId', (req, res) => {
   console.log('appointmentId', req.params.appointmentId);
   let appointmentId = req.params.appointmentId;
 
@@ -186,8 +186,34 @@ router.delete('/:appointmentId', (req, res) => {
       console.error('DELETE Appointment FAILED', err);
       res.sendStatus(500);
     });
-}); // end of DELETE
+}); // end of DELETE appointment
 
+// Delete the growthData
+router.delete('/growthData/:growthId', (req, res) => {
+  console.log('growthId', req.params.growthId);
+  let growthId = req.params.growthId;
+
+  const queryText = `
+    DELETE FROM "growth"
+    WHERE "id" = $1;
+  `;
+
+  let queryParams = [
+    growthId
+  ]
+
+  pool.query(queryText, queryParams)
+    .then(() => {
+      res.send(204)
+    })
+    .catch((err) => {
+      console.error('DELETE Appointment FAILED', err);
+      res.sendStatus(500);
+    });
+}); // end of DELETE growthData
+
+
+// GET only that one SELECTED appointment
 router.get('/select/:memberId/:appointmentId', (req, res) => {
   console.log('select memberId', req.params.memberId);
   console.log('appId', req.params.appointmentId);

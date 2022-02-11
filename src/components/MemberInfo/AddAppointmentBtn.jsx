@@ -1,7 +1,7 @@
 import { useHistory, useParams } from "react-router-dom";
 
 
-function AppointmentBtn (props) {
+function AddAppointmentBtn (props) {
     console.log('appt Btn id', props.id);
     
     const history = useHistory();
@@ -17,6 +17,6 @@ function AppointmentBtn (props) {
         </button>
         </>
     )
-}; // end of AddFamily
+}; // end of AddAppointmentBtn
 
-export default AppointmentBtn;
+export default AddAppointmentBtn;

@@ -9,8 +9,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-
+import Delete from './DeleteBtn';
+import Edit from './EditAppointmentBtn';
 
 function createData(age, height, weight, date) {
     return { age, height, weight, date };
@@ -35,7 +35,6 @@ function MemberDetails () {
     return (
         <>
         <div>
-           {/** Appointment */}
             <button onClick={() => history.push(`/appointment/${params.id}`)} >
                 Appointment
             </button>
@@ -66,6 +65,20 @@ function MemberDetails () {
                 <TableCell align="center">{memberInfo.height}</TableCell>
                 <TableCell align="center">{memberInfo.weight}</TableCell>
                 <TableCell align="center">{memberInfo.date}</TableCell>
+                <TableCell align="center">
+                    <Edit
+                        type="editGrowth"
+                        memberId={params.id} 
+                        growthId={memberInfo.id}
+                    />
+                </TableCell>
+                <TableCell align="center">
+                    <Delete 
+                        type="DELETE_GROWTH_DATA"
+                        memberId={params.id}
+                        growthId={memberInfo.growthId}
+                    />
+                </TableCell>
                 </TableRow>
             ))}
             </TableBody>
