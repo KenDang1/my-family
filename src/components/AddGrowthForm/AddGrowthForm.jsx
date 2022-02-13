@@ -1,39 +1,27 @@
 import { Button, Icon, TextField, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Input from '@mui/material/Input';
-
-
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import BackupIcon from '@mui/icons-material/Backup';
 
-function AddAppointmentForm () {
+
+function AddGrowthForm () {
+    const memberId = useParams();
+    console.log('addGrowth member id', memberId.idM);
     const dispatch = useDispatch();
     const history = useHistory();
-    const memberId = useParams();
-    console.log('appt member id', memberId.idM);
-    
-    const [newAppointment, setNewAppointment] = useState({
-        name: '', 
-        location: '', 
-        date_time: '',
-        comments: ''
+
+    const [newMeasure, setNewMeasure] = useState({
+        age: '', 
+        height: '', 
+        weight: '',
+        date: '',
     });
 
     const handleChange = (evt, property) => {
-        setNewAppointment({...newAppointment, [property]: evt.target.value})
-    };
-
-    const addNewAppointment = (evt) => {
-        evt.preventDefault();
-        dispatch({
-            type: 'ADD_NEW_APPOINTMENT',
-            payload: {
-                newAppointment: newAppointment,
-                memberId: memberId.idM
-            }
-        })
-        history.push(`/appointment/${memberId.idM}`);
+        setNewMeasure({...newMeasure, [property]: evt.target.value})
     };
 
     const useStyles = makeStyles(theme => ({
@@ -61,60 +49,70 @@ function AddAppointmentForm () {
             marginRight: theme.spacing(1),
             width: 200
         }
-        }));
-    
+    }));
 
+
+    const addNewMeasure = (evt) => {
+        evt.preventDefault();
+        dispatch({
+            type: 'ADD_NEW_MEASURE',
+            payload: {
+                newMeasure: newMeasure,
+                memberId: memberId.idM
+            }
+        })
+        history.push(`/memberDetails/${memberId.idM}`);
+    };
 
     return (
         <div>
         <Paper className="container">
-            <form onSubmit={addNewAppointment}>
+            <form onSubmit={addNewMeasure}>
                 <Input
                     required
-                    type='text'
-                    placeholder="Name"
-                    value={newAppointment.name}
-                    onChange={(evt) => handleChange(evt, "name")}
+                    type='integer'
+                    placeholder="Age"
+                    value={newMeasure.age}
+                    onChange={(evt) => handleChange(evt, "age")}
                 />
                 <br />
                 <Input
                     required
-                    type='text'
-                    placeholder="Location"
-                    value={newAppointment.location}
-                    onChange={(evt) => handleChange(evt, "location")}
+                    type='integer'
+                    placeholder="Height"
+                    value={newMeasure.height}
+                    onChange={(evt) => handleChange(evt, "height")}
                 />
                 <br />
                 <Input
                     required
-                    type='date'
-                    placeholder="date"
-                    value={newAppointment.date_time}
-                    onChange={(evt) => handleChange(evt, "date_time")}
+                    type='integer'
+                    placeholder="Weight"
+                    value={newMeasure.weight}
+                    onChange={(evt) => handleChange(evt, "weight")}
 
                 />
                 <br />
-                <TextField
+                <Input
                     required
-                    id="margin-normal"
-                    name="Comments"
-                    placeholder="Comments"
-                    value={newAppointment.comments}
-                    onChange={(evt) => handleChange(evt, "comments")}
+                    type='Date'
+                    placeholder="Date"
+                    value={newMeasure.date}
+                    onChange={(evt) => handleChange(evt, "date")}
                 />
                 <br />
                 <Button
                     type="submit"
-                    variant="contained"
+                    variant="outlined"
                     color="primary"
                     size="small"
                 >
-                Submit
+                <BackupIcon xs={8}/>
                 </Button>
             </form>
         </Paper>
     </div>
     )
-}; //end of AddAppointmentForm
+}; // end of AddGrowthForm
 
-export default AddAppointmentForm;
+export default AddGrowthForm;

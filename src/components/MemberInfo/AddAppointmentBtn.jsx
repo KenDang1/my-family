@@ -2,7 +2,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 
 function AddAppointmentBtn (props) {
-    console.log('appt Btn id', props.id);
+    console.log('appt Btn id', props.memberId);
     
     const history = useHistory();
 
@@ -11,7 +11,7 @@ function AddAppointmentBtn (props) {
         <button
             // When click on this button it should take user to AddMemberForm
             className={props.className}
-            onClick={() => history.push(`/addAppointmentForm/${props.id}`)}
+            onClick={() => history.push(`/addAppointmentForm/${props.memberId}`)}
         >
             Add Appointment
         </button>

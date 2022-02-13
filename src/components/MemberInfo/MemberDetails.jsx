@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams }  from 'react-router-dom';
+import { useHistory, useParams, Link }  from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import MemberHeader from './MemberHeader';
+import { Button, Icon, TextField, Typography } from "@material-ui/core";
+import AddchartIcon from '@mui/icons-material/Addchart';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -27,23 +29,35 @@ function MemberDetails () {
     useEffect (() => {
         dispatch({
             type: 'FETCH_MEMBER_INFO',
-            payload: params.id
+            payload: params.idM
         })
-    }, [params.id]);
+    }, [params.idM]);
 
 
     return (
         <>
         <div>
-            <button onClick={() => history.push(`/appointment/${params.id}`)} >
+            <Link 
+                to={`/appointment/${params.idM}`}
+                
+            >
                 Appointment
-            </button>
+            </Link>
         </div>
         <br />
         <div>
             <button>Document</button>
         </div>
         <MemberHeader member={member} className="memberHeader" />
+        <br />
+        <Button 
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={() => history.push(`/addGrowthForm/${params.idM}`)}
+        >
+            <AddchartIcon />
+        </Button>
         <br />
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 100, border: 2, borderColor: 'black' }}  aria-label="simple table">
