@@ -9,7 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import AppointmentBtn from './AddAppointmentBtn';
+import AddAppointmentBtn from './AddAppointmentBtn';
 import Delete from './DeleteBtn';
 import Edit from './EditBtn';
 
@@ -18,7 +18,7 @@ function MemberAppointment () {
 
     const history = useHistory();
     const params = useParams();
-    console.log('memberId in memberAppointment', params.id);
+    console.log('memberId in memberAppointment', params.idM);
     const dispatch = useDispatch();
     const member = useSelector ((store) => store.memberInfo);
     const appointment = useSelector ((store) => store.memberAppointment);
@@ -26,17 +26,17 @@ function MemberAppointment () {
     useEffect (() => {
         dispatch({
             type: 'FETCH_MEMBER_APPOINTMENT',
-            payload: params.id
+            payload: params.idM
         })
-    }, [params.id]);
+    }, [params.idM]);
 
 
     return (
         <>
         <div>
-            <AppointmentBtn 
+            <AddAppointmentBtn 
                 className="appointmentBtn" 
-                id={params.id}
+                memberId={params.idM}
             />
         </div>
         <br />
@@ -77,7 +77,7 @@ function MemberAppointment () {
                 <TableCell align="center">
                     <Edit 
                         type="editAppointment"
-                        memberId={params.id} 
+                        memberId={params.idM} 
                         appointmentId={appointment.id}
                     />
                 </TableCell>
@@ -85,7 +85,7 @@ function MemberAppointment () {
                     <Delete 
                         type="DELETE_APPOINTMENT"
                         appointmentId={appointment.id}
-                        memberId={params.id}
+                        memberId={params.idM}
                         />
                 </TableCell>
                 </TableRow>

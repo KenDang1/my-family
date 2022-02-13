@@ -5,7 +5,6 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
@@ -25,8 +24,7 @@ import Appointment from '../MemberInfo/MemberAppointment';
 import AddAppointmentForm from '../AddAppointmentForm/AddAppointmentForm';
 import EditAppointmentForm from '../MemberInfo/EditAppointmentForm';
 import EditGrowthForm from '../MemberInfo/EditGrowthForm';
-
-
+import AddGrowthForm from '../AddGrowthForm/AddGrowthForm';
 import './App.css';
 
 function App() {
@@ -126,14 +124,14 @@ function App() {
 
           <Route 
             exact
-            path="/addAppointmentForm/:id"
+            path="/addAppointmentForm/:idM"
           >
             <AddAppointmentForm />
           </Route>
 
           <Route
             exact
-            path="/appointment/:id"
+            path="/appointment/:idM"
           >
             <Appointment />
           </Route>
@@ -151,10 +149,17 @@ function App() {
           >
             <EditGrowthForm />
           </Route>
+          
+          <Route 
+            exact
+            path="/addGrowthForm/:idM"
+          >
+            <AddGrowthForm />
+          </Route>
 
           <Route 
             exact
-            path="/memberDetails/:id"
+            path="/memberDetails/:idM"
           >
             <MemberDetails />
           </Route>

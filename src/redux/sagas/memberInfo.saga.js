@@ -8,7 +8,23 @@ function* memberInfoSaga () {
     yield takeEvery('FETCH_MEMBER_APPOINTMENT', fetchMemberAppointment);
     yield takeEvery('DELETE_APPOINTMENT', deleteAppointment);
     yield takeEvery('DELETE_GROWTH_DATA', deleteGrowthData);
+    yield takeEvery( 'ADD_NEW_MEASURE', addNewMeasure);
 };
+
+function* addNewMeasure (action) {
+    console.log('in addNewMeasure Saga', action.payload);
+    try{
+        yield axios.post(`/api/family/measure/${action.payload.memberId}`, action.payload);
+
+        yield put({
+            type: 'FETCH_MEMBER_INFO',
+            payload: action.payload.memberId
+        });
+    }
+    catch {
+        console.log('get all error in addNewMeasure');
+    };
+}; // end of addNewMeasure
 
 function* deleteGrowthData (action) {
     console.log('In deleteGrowthData saga', action.payload);

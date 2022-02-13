@@ -96,6 +96,42 @@ router.post('/', (req, res) => {
   
 }); // end of POST
 
+
+// POST a new measure to that member
+router.post('/measure/:memberId', (req, res) => {
+  // POST route code here
+  console.log('post member id', req.params.memberId)
+  let memberId = req.params.memberId;
+
+  let newMeasure = req.body.newMeasure;
+  console.log('newMeasure', newMeasure)
+
+  const queryText = `
+  INSERT INTO "growth"
+    ("age", "height", "weight", "date", "familyMember_id")
+  VALUES ($1, $2, $3, $4, $5);
+  `;
+
+  const queryParams = [
+    newMeasure.age,
+    newMeasure.height,
+    newMeasure.weight,
+    newMeasure.date,
+      memberId
+  ]
+
+  pool.query(queryText, queryParams)
+    .then((results) => {
+      res.sendStatus(201)
+    })
+    .catch( err => {
+      console.error(`POST appointment failed`, err);
+      res.sendStatus(500);
+    });
+  
+}); // end of POST /measure
+
+
 // POST a new appointment to that member
 router.post('/appointment/:memberId', (req, res) => {
   // POST route code here
@@ -329,7 +365,7 @@ router.put('/growth/:memberId', (req, res) => {
   console.log('memberId in PUT growth', req.params.memberId);
   console.log('update growth body', req.body);
   let updateGrowth = req.body;
-  const age = Number(updateGrowth.age)
+
   const queryText = `
     UPDATE "growth" 
     SET ("age", "height", "weight", "date") =
@@ -338,7 +374,7 @@ router.put('/growth/:memberId', (req, res) => {
   `;
   
   const queryParams = [
-    age,
+    updateGrowth.age,
     updateGrowth.height,
     updateGrowth.weight,
     updateGrowth.date,
