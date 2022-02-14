@@ -3,7 +3,7 @@ import { useHistory, useParams, Link }  from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import MemberHeader from './MemberHeader';
 import { Button, Icon, TextField, Typography } from "@material-ui/core";
-import AddchartIcon from '@mui/icons-material/Addchart';
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -13,6 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Delete from './DeleteBtn';
 import Edit from './EditBtn';
+import GrowthChart from '../GrowthChart/GrowthChart'
 
 function createData(age, height, weight, date) {
     return { age, height, weight, date };
@@ -48,6 +49,9 @@ function MemberDetails () {
         <div>
             <button>Document</button>
         </div>
+        <button onClick={() => history.push("/user")}>
+            Back
+        </button>
         <MemberHeader member={member} className="memberHeader" />
         <br />
         <Button 
@@ -56,9 +60,12 @@ function MemberDetails () {
             size="small"
             onClick={() => history.push(`/addGrowthForm/${params.idM}`)}
         >
-            <AddchartIcon />
+            <DataSaverOnIcon />
         </Button>
         <br />
+        <GrowthChart 
+            memberID={params.idM}
+        />
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 100, border: 2, borderColor: 'black' }}  aria-label="simple table">
             <TableHead>
@@ -80,17 +87,25 @@ function MemberDetails () {
                 <TableCell align="center">{memberInfo.weight}</TableCell>
                 <TableCell align="center">{memberInfo.date}</TableCell>
                 <TableCell align="center">
-                    <Edit
-                        memberId={params.id} 
+                    { memberInfo.age === null ? 
+                        null
+                        :
+                        <Edit
+                        memberId={params.idM} 
                         growthId={memberInfo.growthId}
-                    />
+                    /> 
+                    }
                 </TableCell>
                 <TableCell align="center">
-                    <Delete 
+                    { memberInfo.age === null ? 
+                        null
+                        :
+                        <Delete 
                         type="DELETE_GROWTH_DATA"
-                        memberId={params.id}
+                        memberId={params.idM}
                         growthId={memberInfo.growthId}
-                    />
+                    /> 
+                    }
                 </TableCell>
                 </TableRow>
             ))}

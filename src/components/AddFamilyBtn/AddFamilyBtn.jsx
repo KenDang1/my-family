@@ -1,17 +1,19 @@
 import { useHistory } from "react-router-dom";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import {Button} from '@material-ui/core'
 
 function AddFamilyBtn (props) {
     const history = useHistory();
 
     return (
         <>
-        <button
+        <Button
             // When click on this button it should take user to AddMemberForm
             className={props.className}
             onClick={() => history.push("/addMemberForm")}
         >
-            Add Member
-        </button>
+            <PersonAddIcon />
+        </Button>
         </>
     )
 }; // end of AddFamily

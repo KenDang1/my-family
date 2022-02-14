@@ -1,17 +1,19 @@
 import { useHistory } from 'react-router-dom';
+import {Button} from '@material-ui/core'
+import CancelIcon from '@mui/icons-material/Cancel';
 
 function CancelBtn ({memberId, type}) {
     const history = useHistory();
 
     return (
-        <button
+        <Button
             onClick={() => type === "toAppointment" ? 
             history.push(`/appointment/${memberId}`)
             :
             history.push(`/memberDetails/${memberId}`)
         }>
-            Cancel
-        </button>
+            <CancelIcon fontSize='medium'/>
+        </Button>
     )
 };
 
