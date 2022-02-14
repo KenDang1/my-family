@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import AddAppointmentBtn from './AddAppointmentBtn';
 import Delete from './DeleteBtn';
 import Edit from './EditBtn';
-
+import { Button } from '@material-ui/core';
 
 function MemberAppointment () {
 
@@ -45,10 +45,13 @@ function MemberAppointment () {
         </div>
         <br />
         <div className='backBtn'>
-            <button 
-                onClick={() => history.push(`/memberDetails/${params.id}`)}>
+            <Button 
+                variant="contained"
+                color="primary"
+                size="small"
+                onClick={() => history.push(`/memberDetails/${params.idM}`)}>
                 Back
-            </button>
+            </Button>
         </div>
         <br />
         <MemberHeader member={member} className="memberHeader" />

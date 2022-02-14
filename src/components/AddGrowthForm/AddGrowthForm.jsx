@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import BackupIcon from '@mui/icons-material/Backup';
-
+import CancelBtn from '../MemberInfo/CancelBtn';
 
 function AddGrowthForm () {
     const memberId = useParams();
@@ -110,6 +110,10 @@ function AddGrowthForm () {
                 <BackupIcon xs={8}/>
                 </Button>
             </form>
+            <CancelBtn 
+                type="toDetails"
+                memberId={memberId.idM}
+            />
         </Paper>
     </div>
     )

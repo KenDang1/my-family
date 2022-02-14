@@ -2,7 +2,7 @@ import { Button, Icon, TextField, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Input from '@mui/material/Input';
 
-
+import CancelBtn from '../MemberInfo/CancelBtn';
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
@@ -112,6 +112,10 @@ function AddAppointmentForm () {
                 Submit
                 </Button>
             </form>
+            <CancelBtn 
+                type="toAppointment"
+                memberId={memberId.idM}
+            />
         </Paper>
     </div>
     )
