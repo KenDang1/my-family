@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Member from '../Member/Member'
-
+import './FamilyMemberList.css';
 
 function FamilyMemberList () {
     const user = useSelector((store) => store.user);
@@ -19,13 +19,11 @@ function FamilyMemberList () {
     return (
         <>
         {myFamily.map((member) => (
-            <li key={member.id}>
-                <Member 
-                    member={member}
-                />
-            </li>
+            <Member 
+                key={member.id}
+                member={member}
+            />
         ))}
-
         </>
     )
 }; // end of FamilyMemberList

@@ -35,6 +35,7 @@ router.get('/member/:id', (req, res) => {
   
   let queryText = `
     SELECT
+        "familyMembers"."id" AS "memberId",
         "familyMembers"."firstName",
         "familyMembers"."lastName",
         "familyMembers"."birthday",

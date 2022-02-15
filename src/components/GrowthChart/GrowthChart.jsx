@@ -7,11 +7,10 @@ const LineChart = ({ memberId }) => {
 
     const memberInfo = useSelector ((store) => store.memberInfo);
     console.log('member info Chart', memberInfo);
-    // set all state to empty array
+
     const [height, setHeight] = useState([]);
     const [weight, setWeight] = useState([]);
     const [date, setDate] = useState([]);
-    console.log('date in chart', date)
     
 
     useEffect (() => {
@@ -38,7 +37,6 @@ const LineChart = ({ memberId }) => {
     return (
     <>
     <Chart 
-
     // this options are how the chart look
     // you also set your x-axis data into here
         options = {{
@@ -50,7 +48,7 @@ const LineChart = ({ memberId }) => {
             categories: date
         },
         title: {
-            text: 'Measurement Chart',
+            text: 'Growth Chart',
             align: 'center'
         },
         stroke: {
@@ -67,7 +65,52 @@ const LineChart = ({ memberId }) => {
         },
         dataLabels: {
             enabled: false
-        }
+        },
+        yaxis: [
+            {
+                axisTicks: {
+                show: true
+                },
+                axisBorder: {
+                show: true,
+                color: "#FF1654"
+                },
+                labels: {
+                style: {
+                    colors: "#FF1654"
+                }
+                },
+                title: {
+                text: "Height (inches)",
+                style: {
+                    color: "#FF1654"
+                }
+                },
+                max: 70,
+            },
+            {
+                opposite: true,
+                axisTicks: {
+                show: true
+                },
+                axisBorder: {
+                show: true,
+                color: "#247BA0"
+                },
+                labels: {
+                style: {
+                    colors: "#247BA0"
+                }
+                },
+                title: {
+                text: "Weight (lbs)",
+                style: {
+                    color: "#247BA0"
+                }
+                },
+                max: 150,
+            }
+        ]
         }}
         
         // putting the data into the series
@@ -81,8 +124,7 @@ const LineChart = ({ memberId }) => {
             data: weight
             }
         ]}
-
-        type='line'
+        type='bar'
         width= '80%'
         height={300}
     />

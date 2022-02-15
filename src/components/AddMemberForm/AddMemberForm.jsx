@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import BackBtn from '../MemberInfo/BackBtn';
 
 function AddMemberForm () {
     const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function AddMemberForm () {
             />
             <button>Submit</button>
         </form>
+        <BackBtn type="toUserPage"/>
         </>
     )
 }; //end of AddMemberForm
