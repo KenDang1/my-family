@@ -48,7 +48,7 @@ const LineChart = ({ memberId }) => {
             categories: date
         },
         title: {
-            text: 'Measurement Chart',
+            text: 'Growth Chart',
             align: 'center'
         },
         stroke: {
@@ -85,7 +85,8 @@ const LineChart = ({ memberId }) => {
                 style: {
                     color: "#FF1654"
                 }
-                }
+                },
+                max: 70,
             },
             {
                 opposite: true,
@@ -106,7 +107,8 @@ const LineChart = ({ memberId }) => {
                 style: {
                     color: "#247BA0"
                 }
-                }
+                },
+                max: 150,
             }
         ]
         }}
@@ -122,7 +124,7 @@ const LineChart = ({ memberId }) => {
             data: weight
             }
         ]}
-        type='line'
+        type='bar'
         width= '80%'
         height={300}
     />

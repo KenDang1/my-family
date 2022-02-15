@@ -37,11 +37,11 @@ function DeleteBtn ({type, appointmentId, memberId, payload, growthId}) {
                                 memberId: memberId
                             }
                         })
-                        // Swal.fire(
-                        //     'Deleted!',
-                        //     'Your file has been deleted.',
-                        //     'success'
-                        // )
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
                     }
                 })}>
             <DeleteForeverIcon fontSize="medium"/>
