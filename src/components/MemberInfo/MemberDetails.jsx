@@ -14,10 +14,7 @@ import Paper from '@mui/material/Paper';
 import Delete from './DeleteBtn';
 import Edit from './EditBtn';
 import GrowthChart from '../GrowthChart/GrowthChart'
-
-function createData(age, height, weight, date) {
-    return { age, height, weight, date };
-  }
+import BackBtn from './BackBtn'
 
 function MemberDetails () {
     const params = useParams();
@@ -49,9 +46,7 @@ function MemberDetails () {
         <div>
             <button>Document</button>
         </div>
-        <button onClick={() => history.push("/user")}>
-            Back
-        </button>
+        <BackBtn type="toUserPage"/>
         <MemberHeader member={member} className="memberHeader" />
         <br />
         <Button 
@@ -63,9 +58,12 @@ function MemberDetails () {
             <DataSaverOnIcon />
         </Button>
         <br />
+        {member[0].age === null ?
+            ""
+        :
         <GrowthChart 
             memberID={params.idM}
-        />
+        />}
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 100, border: 2, borderColor: 'black' }}  aria-label="simple table">
             <TableHead>

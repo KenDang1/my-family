@@ -13,6 +13,8 @@ import AddAppointmentBtn from './AddAppointmentBtn';
 import Delete from './DeleteBtn';
 import Edit from './EditBtn';
 import { Button } from '@material-ui/core';
+import BackBtn from './BackBtn';
+
 
 function MemberAppointment () {
 
@@ -34,30 +36,22 @@ function MemberAppointment () {
     return (
         <>
         <div>
-            <AddAppointmentBtn 
-                className="appointmentBtn" 
-                memberId={params.idM}
-            />
-        </div>
-        <br />
-        <div>
             <button>Document</button>
         </div>
         <br />
-        <div className='backBtn'>
-            <Button 
-                variant="contained"
-                color="primary"
-                size="small"
-                onClick={() => history.push(`/memberDetails/${params.idM}`)}>
-                Back
-            </Button>
-        </div>
+        <BackBtn 
+            type="toMemberDetails"
+            memberId={params.idM}
+        />
         <br />
         <MemberHeader member={member} className="memberHeader" />
         <br />
         <TableContainer component={Paper}>
             <h3>Appointment</h3>
+        <AddAppointmentBtn 
+            className="appointmentBtn" 
+            memberId={params.idM}
+        />
         <Table sx={{ minWidth: 100, border: 2, borderColor: 'black' }}  aria-label="simple table">
             <TableHead>
             <TableRow>

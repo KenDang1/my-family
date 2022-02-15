@@ -1,0 +1,4 @@
+.familyMember {
+    display: flex;
+    flex-flow: column wrap;
+}

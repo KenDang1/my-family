@@ -10,7 +10,9 @@ function AddAppointmentBtn (props) {
     return (
         <>
         <Button
-            // When click on this button it should take user to AddMemberForm
+            variant="contained"
+            color="primary"
+            size="small"
             className={props.className}
             onClick={() => history.push(`/addAppointmentForm/${props.memberId}`)}
         >

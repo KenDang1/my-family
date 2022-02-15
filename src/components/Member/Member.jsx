@@ -5,6 +5,7 @@ function Member ({member}) {
 
     return (
         <Link 
+            className='familyMember'
             to={`/memberDetails/${member.id}`}
         >
             {member.firstName} {member.lastName}
