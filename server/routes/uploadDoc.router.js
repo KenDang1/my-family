@@ -26,19 +26,21 @@ router.post('/:memberId', upload.single('file'), (req, res) => {
     console.log('req.body is', req.body);
     console.log('req.file is', req.file);
     console.log('memberId upload', req.params.memberId);
-    let filePath = req.file.path;
+    let filePath = req.file.filename;
+    let fileName = req.file.originalname;
     let memberId = req.params.memberId;
     
     const queryText = `
         INSERT INTO "documents"
-        ("filePath", "familyMember_id")
+        ("filePath", "familyMember_id", "fileName")
         VALUES
-        ($1, $2);
+        ($1, $2, $3);
     `;
     
     const queryParams = [
         filePath,
-        memberId
+        memberId,
+        fileName
     ];
 
     pool.query(queryText, queryParams)
@@ -49,6 +51,8 @@ router.post('/:memberId', upload.single('file'), (req, res) => {
         });
 }); // end of POST documents
 
+
+// GET member document
 router.get('/:memberId', (req, res) => {
     console.log('member id', req.params.memberId);
     
@@ -58,6 +62,7 @@ router.get('/:memberId', (req, res) => {
             "familyMembers"."firstName",
             "familyMembers"."lastName",
             "familyMembers"."birthday",
+            "documents"."fileName",
             "documents"."filePath",
             "documents"."id" AS "documentId"
         FROM "familyMembers"
