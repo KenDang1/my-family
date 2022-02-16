@@ -46,7 +46,11 @@ function MemberDetails () {
         </div>
         <br />
         <div>
-            <button>Document</button>
+            <button
+                onClick={() => history.push(`/document/${params.idM}`)}
+            >
+                Document
+            </button>
         </div>
         <BackBtn type="toUserPage"/>
         <MemberHeader member={member} className="memberHeader" />
