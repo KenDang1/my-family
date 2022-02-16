@@ -25,7 +25,8 @@ import AddAppointmentForm from '../AddAppointmentForm/AddAppointmentForm';
 import EditAppointmentForm from '../MemberInfo/EditAppointmentForm';
 import EditGrowthForm from '../MemberInfo/EditGrowthForm';
 import AddGrowthForm from '../AddGrowthForm/AddGrowthForm';
-import AddDocForm from '../AddDocumentForm/AddDocumentForm'
+import AddDocForm from '../AddDocumentForm/AddDocumentForm';
+import MemberDocument from '../MemberDocument/MemberDocument';
 import './App.css';
 
 function App() {
@@ -170,6 +171,13 @@ function App() {
             path="/addDoc/:idM"
           >
             <AddDocForm />
+          </Route>
+
+          <Route
+            exact
+            path="/document/:idM"
+          >
+            <MemberDocument />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
