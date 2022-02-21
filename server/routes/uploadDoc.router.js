@@ -85,4 +85,30 @@ router.get('/:memberId', (req, res) => {
 
   }); // end of GET /appointment
 
+
+  // Delete document
+  router.delete('/:documentId', (req, res) => {
+    console.log('documentId', req.params.documentId);
+    let documentId = req.params.documentId;
+  
+    const queryText = `
+      DELETE FROM "documents"
+      WHERE "id" = $1;
+    `;
+  
+    let queryParams = [
+        documentId
+    ]
+  
+    pool.query(queryText, queryParams)
+      .then(() => {
+        res.send(204)
+      })
+      .catch((err) => {
+        console.error('DELETE Document FAILED', err);
+        res.sendStatus(500);
+      });
+  }); // end of DELETE document
+  
+
 module.exports = router;

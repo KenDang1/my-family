@@ -16,6 +16,7 @@ import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import GrowthChart from '../GrowthChart/GrowthChart'
 import BackBtn from './BackBtn'
 import DetailTable from './MemberDetailTable';
+import './MemberInfo.css';
 
 function MemberDetails () {
     const params = useParams();
@@ -36,21 +37,19 @@ function MemberDetails () {
 
     return (
         <>
-        <div>
+        <div className='link'>
             <Link 
                 to={`/appointment/${params.idM}`}
                 
             >
                 Appointment
             </Link>
-        </div>
         <br />
-        <div>
-            <button
-                onClick={() => history.push(`/document/${params.idM}`)}
+            <Link
+                to={`/document/${params.idM}`}
             >
                 Document
-            </button>
+            </Link>
         </div>
         <BackBtn type="toUserPage"/>
         <MemberHeader member={member} className="memberHeader" />
@@ -74,9 +73,12 @@ function MemberDetails () {
         {member.length === 0 || member[0].date === null ?
             "" 
         :
-        <DetailTable 
-            member={member}
-        />}
+        <div className="tableContainer">
+            <DetailTable 
+                member={member}
+            />
+        </div>
+        }
         </>
     )
 };  // end of MemberDetails

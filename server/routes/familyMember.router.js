@@ -177,7 +177,7 @@ router.get('/appointment/:id', (req, res) => {
         "familyMembers"."firstName",
         "familyMembers"."lastName",
         "familyMembers"."birthday",
-        TO_CHAR("date_time", 'yyyy-MM-dd') AS "date",
+        TO_CHAR("date_time", 'yyyy-MM-dd') AS "dateTime",
         "appointment"."name",
         "appointment"."location",
         "appointment"."comments",
@@ -186,7 +186,7 @@ router.get('/appointment/:id', (req, res) => {
     LEFT JOIN "appointment"
         ON "appointment"."familyMember_id" = "familyMembers"."id"
     WHERE "appointment"."familyMember_id" = $1
-    ORDER BY "date";
+    ORDER BY "dateTime";
     `;
 
   let queryParams = [req.params.id]

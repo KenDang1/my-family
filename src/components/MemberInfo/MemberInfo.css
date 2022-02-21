@@ -2,3 +2,22 @@
     display: flex;
     justify-content: space-between;
 }
+
+.tableHead {
+    background-color: aquamarine;
+}
+
+.tableContainer {
+    display: flex;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border: 10px;
+    flex-direction: column;
+}
+
+.link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 10px;
+}

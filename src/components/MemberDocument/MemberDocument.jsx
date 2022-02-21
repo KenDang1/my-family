@@ -1,4 +1,4 @@
-import { useParams, useHistory} from 'react-router-dom';
+import { useParams, useHistory, Link} from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MemberHeader from '../MemberInfo/MemberHeader';
@@ -6,6 +6,7 @@ import PDFDoc from './PDFDoc';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Test from './PDFtest'
 
 function MemberDocument () {
     const params = useParams();
@@ -23,6 +24,14 @@ function MemberDocument () {
 
     return (
         <>
+        <div className='link'>
+            <Link 
+                to={`/appointment/${params.idM}`}
+                
+            >
+                Appointment
+            </Link>
+        </div>
         <button
             onClick={() => history.push(`/addDoc/${params.idM}`)}
         >
@@ -35,6 +44,7 @@ function MemberDocument () {
                     <Grid item xs={6} key={i}> 
                     <PDFDoc 
                         document={document}
+                        memberId={params.idM}
                     />
                     </Grid>
                 )}

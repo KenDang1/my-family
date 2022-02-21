@@ -71,14 +71,6 @@ function AddGrowthForm () {
                 <Input
                     required
                     type='integer'
-                    placeholder="Age"
-                    value={newMeasure.age}
-                    onChange={(evt) => handleChange(evt, "age")}
-                />
-                <br />
-                <Input
-                    required
-                    type='integer'
                     placeholder="Height"
                     value={newMeasure.height}
                     onChange={(evt) => handleChange(evt, "height")}

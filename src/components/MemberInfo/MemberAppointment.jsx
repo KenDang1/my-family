@@ -35,8 +35,12 @@ function MemberAppointment () {
 
     return (
         <>
-        <div>
-            <button>Document</button>
+        <div className='link'>
+        <Link
+                to={`/document/${params.idM}`}
+            >
+                Document
+            </Link>
         </div>
         <br />
         <BackBtn 
@@ -69,7 +73,7 @@ function MemberAppointment () {
                 >
                 <TableCell align="center">{appointment.name}</TableCell>
                 <TableCell align="center">{appointment.location}</TableCell>
-                <TableCell align="center">{appointment.date}</TableCell>
+                <TableCell align="center">{appointment.dateTime}</TableCell>
                 <TableCell align="center">{appointment.comments}</TableCell>
                 <TableCell align="center">
                     <Edit 

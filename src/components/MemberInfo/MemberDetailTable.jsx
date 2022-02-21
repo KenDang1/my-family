@@ -16,15 +16,16 @@ function MemberDetails ({ member }) {
 
     return (
         <>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className="tableContainer">
             <h3>Growth Table</h3>
         <Table sx={{ minWidth: 100, border: 2, borderColor: 'black' }}  aria-label="simple table">
-            <TableHead>
+            <TableHead className='tableHead'>
             <TableRow>
-                <TableCell align="center">Age&nbsp;(month)</TableCell>
                 <TableCell align="center">Height&nbsp;(in)</TableCell>
                 <TableCell align="center">Weight&nbsp;(lbs)</TableCell>
                 <TableCell align="center">Date</TableCell>
+                <TableCell align="center"></TableCell>
+                <TableCell align="center"></TableCell>
             </TableRow>
             </TableHead>
             <TableBody>
@@ -33,7 +34,6 @@ function MemberDetails ({ member }) {
                 key={index}
                 sx={ { border: 2, minWidth: 100 } }
                 >
-                <TableCell align="center">{memberInfo.age}</TableCell>
                 <TableCell align="center">{memberInfo.height}</TableCell>
                 <TableCell align="center">{memberInfo.weight}</TableCell>
                 <TableCell align="center">{memberInfo.date}</TableCell>

@@ -34,9 +34,25 @@ function* fetchDocuments(action) {
     }
 };
 
-function* uploadDocument() {
+function* deleteDocument (action) {
+    try {
+        console.log('In deleteDocument saga', action.payload);
+        yield axios.delete(`/api/upload/${action.payload.documentId}`);
+
+        yield put({
+            type: 'FETCH_DOCUMENTS',
+            payload: action.payload.memberId
+        });
+    }
+    catch (err) {
+        console.error('DELETE Document failed', err);
+    }
+}; // end of deleteAppointment
+
+function* document() {
     yield takeEvery('DOCUMENT_UPLOAD', upload);
     yield takeEvery('FETCH_DOCUMENTS', fetchDocuments);
+    yield takeEvery('DELETE_DOCUMENT', deleteDocument);
 }
 
-export default uploadDocument;
+export default document;
