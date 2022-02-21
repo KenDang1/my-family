@@ -43,10 +43,12 @@ function MemberAppointment () {
             </Link>
         </div>
         <br />
+        <div className='backBtn'>
         <BackBtn 
             type="toMemberDetails"
             memberId={params.idM}
         />
+        </div>
         <br />
         <MemberHeader member={member} className="memberHeader" />
         <br />

@@ -51,7 +51,9 @@ function MemberDetails () {
                 Document
             </Link>
         </div>
+        <div className='backBtn'>
         <BackBtn type="toUserPage"/>
+        </div>
         <MemberHeader member={member} className="memberHeader" />
         <br />
         {member.length === 0 || member[0].date === null ?
