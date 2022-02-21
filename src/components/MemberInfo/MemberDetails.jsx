@@ -54,6 +54,14 @@ function MemberDetails () {
         <BackBtn type="toUserPage"/>
         <MemberHeader member={member} className="memberHeader" />
         <br />
+        {member.length === 0 || member[0].date === null ?
+            ""
+        :
+        <GrowthChart 
+            memberID={params.idM}
+        />}
+        <br />
+        <div className='addGrowth'>
         <Button 
             variant="contained"
             color="primary"
@@ -62,14 +70,7 @@ function MemberDetails () {
         >
             <DataSaverOnIcon />
         </Button>
-        <br />
-        {member.length === 0 || member[0].date === null ?
-            ""
-        :
-        <GrowthChart 
-            memberID={params.idM}
-        />}
-        <br />
+        </div>
         {member.length === 0 || member[0].date === null ?
             "" 
         :

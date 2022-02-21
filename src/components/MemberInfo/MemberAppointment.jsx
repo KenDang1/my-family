@@ -57,12 +57,14 @@ function MemberAppointment () {
             memberId={params.idM}
         />
         <Table sx={{ minWidth: 100, border: 2, borderColor: 'black' }}  aria-label="simple table">
-            <TableHead>
+            <TableHead className='tableHead'>
             <TableRow>
                 <TableCell align="center">Name</TableCell>
                 <TableCell align="center">Where</TableCell>
                 <TableCell align="center">Date</TableCell>
                 <TableCell align="center">Comments</TableCell>
+                <TableCell align="center"></TableCell>
+                <TableCell align="center"></TableCell>
             </TableRow>
             </TableHead>
             <TableBody>

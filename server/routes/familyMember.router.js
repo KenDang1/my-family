@@ -40,7 +40,6 @@ router.get('/member/:id', (req, res) => {
         "familyMembers"."lastName",
         "familyMembers"."birthday",
         TO_CHAR("date", 'yyyy-MM-dd') AS "date",
-        "growth"."age",
         "growth"."height",
         "growth"."weight",
         "growth"."id" AS "growthId"
@@ -109,12 +108,11 @@ router.post('/measure/:memberId', (req, res) => {
 
   const queryText = `
   INSERT INTO "growth"
-    ("age", "height", "weight", "date", "familyMember_id")
-  VALUES ($1, $2, $3, $4, $5);
+    ("height", "weight", "date", "familyMember_id")
+  VALUES ($1, $2, $3, $4);
   `;
 
   const queryParams = [
-    newMeasure.age,
     newMeasure.height,
     newMeasure.weight,
     newMeasure.date,
@@ -302,7 +300,6 @@ router.get('/selectGrowth/:memberId/:growthId', (req, res) => {
       "familyMembers"."lastName",
       "familyMembers"."birthday",
       TO_CHAR("date", 'yyyy-MM-dd') AS "date",
-      "growth"."age",
       "growth"."height",
       "growth"."weight",
       "growth"."id" AS "growthId"
@@ -369,13 +366,12 @@ router.put('/growth/:memberId', (req, res) => {
 
   const queryText = `
     UPDATE "growth" 
-    SET ("age", "height", "weight", "date") =
-        ($1, $2, $3, $4)
-    WHERE "id" = $5 AND "familyMember_id" = $6;
+    SET ("height", "weight", "date") =
+        ($1, $2, $3)
+    WHERE "id" = $4 AND "familyMember_id" = $5;
   `;
   
   const queryParams = [
-    updateGrowth.age,
     updateGrowth.height,
     updateGrowth.weight,
     updateGrowth.date,
