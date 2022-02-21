@@ -46,16 +46,6 @@ function EditGrowthForm () {
         <form onSubmit={handleSubmit}>
             <input
                 type="integer"
-                // The big change: 
-                // bind inputs to redux (instead of local state)
-                value={selectedMember.age}
-                onChange={(evt) => dispatch({
-                type: 'UPDATE_MEMBER',
-                payload: { age: evt.target.value }
-                })}
-            />
-            <input
-                type="integer"
                 value={selectedMember.height}
                 onChange={(evt) => dispatch({
                 type: 'UPDATE_MEMBER',

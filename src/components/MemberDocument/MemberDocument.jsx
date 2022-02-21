@@ -7,12 +7,15 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Test from './PDFtest'
+import { Button } from '@material-ui/core'
+import BackBtn from '../MemberInfo/BackBtn';
 
-function MemberDocument () {
+function MemberDocument ({}) {
     const params = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
     const documents = useSelector((store) => store.memberDocument);
+    const member = useSelector ((store) => store.memberInfo);
     console.log('document in PDFDoc', documents);
 
     useEffect(() => {
@@ -32,12 +35,23 @@ function MemberDocument () {
                 Appointment
             </Link>
         </div>
-        <button
+        <div className='backBtnDoc'>
+        <BackBtn 
+            type="toMemberDetails"
+            memberId={params.idM}
+        />
+        </div>
+        <MemberHeader member={member}/>
+        <div  className='addDocBtn'>
+        <Button
+            variant="contained"
+            color="primary"
+            size="small"
             onClick={() => history.push(`/addDoc/${params.idM}`)}
         >
             Add Document
-        </button>
-        <br />
+        </Button>
+        </div>
         <Box sx={{width: '100%'}}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 {documents?.map((document, i) => 
