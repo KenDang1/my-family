@@ -19,7 +19,7 @@ Softwares used in creating this application includes:
 - [Postico](https://eggerapps.at/postico/)
 - [Node.js](https://nodejs.org/en/)
 - [Nodemon](https://nodemon.io/)
-- [Multer] (http://expressjs.com/en/resources/middleware/multer.html)
+- [Multer](http://expressjs.com/en/resources/middleware/multer.html)
 
 The application's repository may require alterations to lines of codes if used with other softwares that are not listed above.
 
