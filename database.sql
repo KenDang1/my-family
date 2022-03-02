@@ -27,7 +27,6 @@ CREATE TABLE "documents" (
 
 CREATE TABLE "growth" (
 	"id" SERIAL PRIMARY KEY,
-	"age" INTEGER,
 	"height" FLOAT,
 	"weight" FLOAT,
 	"date" DATE,
@@ -41,6 +40,6 @@ CREATE TABLE "appointment" (
 	FOREIGN KEY ("familyMember_id") REFERENCES "familyMembers"("id"),
 	"name" VARCHAR(255),
 	"location" VARCHAR(255),
-	"date_time" DATE NOT NULL,
+	"date_time" DATE,
 	"comments" VARCHAR(400)
 );
