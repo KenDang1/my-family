@@ -33,12 +33,8 @@ The application's repository may require alterations to lines of codes if used w
 
 2. Create a .env file in the repository folder and insert in the following lines with the placeholder variables.
 
-   SERVER_SESSION_SECRET="`strongPassword`" <br />
-   AWS_BUCKET_NAME="`bucketName`" <br />
-   AWS_BUCKET_REGION="`bucketRegion`" <br />
-   AWS_ACCESS_KEY="`accessKey`" <br />
-   AWS_SECRET_KEY="`secretKey`" <br />
-   REACT_APP_OPENCAGE_API_KEY="`openCageKey`" <br />
+   SERVER_SESSION_SECRET="`strongPassword`" 
+   <br />
 
    Replace `strongPassword` with a strong password of the user's choice or use [https://passwordsgenerator.net/](https://passwordsgenerator.net/) to generate a password to replace it with.
 
