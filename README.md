@@ -76,5 +76,6 @@ Users of this application will be able to add in their family members and then f
   - User can upload, download, and delete document relate to the family member.
 
 
-Authors
+Author
+<br />
 Ken Dang
