@@ -25,17 +25,10 @@ function EditGrowthForm () {
     // Called when the submit button is pressed
     const handleSubmit = (event) => {
         event.preventDefault();
-
-    // Save the updated `activeStudent`
-    // to the db (via sagas, axios)
         dispatch({
         type: 'SAVE_MEMBER_GROWTH',
         payload: selectedMember
         });
-
-    // go back home
-    // The saveStudent saga will call FETCH_STUDENTS
-    // so the list view will be up to date
         history.push(`/memberDetails/${idM}`);
     };
 
