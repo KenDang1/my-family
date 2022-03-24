@@ -1,6 +1,6 @@
 ![License](https://img.shields.io/github/license/K3ndang/my-family.svg?style=for-the-badge) ![Repo Size](https://img.shields.io/github/languages/code-size/K3ndang/my-family.svg?style=for-the-badge) ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/K3ndang/my-family.svg?style=for-the-badge) ![FORKS](https://img.shields.io/github/forks/K3ndang/my-family.svg?style=for-the-badge&social) ![Stars](https://img.shields.io/github/stars/K3ndang/my-family.svg?style=for-the-badge)
 
-My Family
+# My Family
 
 My Family was inspired by my fiancé Lien Tran.
 She is the organizer in our family and whenever I ask
